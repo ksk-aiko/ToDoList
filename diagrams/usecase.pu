@@ -1,0 +1,8 @@
+@startuml
+actor User
+rectangle "Todo App" {
+    User --> (Add Todo)
+    User --> (Toggle Todo)
+    User --> (Delete Todo)
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+component App {
+    component TodoForm
+    component TodoList {
+        component TodoItem
+    }
+}
+@enduml

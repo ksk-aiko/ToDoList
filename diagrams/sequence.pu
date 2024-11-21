@@ -1,0 +1,11 @@
+@startuml
+actor User
+participant TodoForm
+participant App
+participant useReducer
+User -> TodoForm: Enter Todo
+TodoForm -> App: Submit Form
+App -> useReducer: Dispatch Add Action
+useReducer --> App: Updated State
+App -> TodoList: Render Todos
+@enduml

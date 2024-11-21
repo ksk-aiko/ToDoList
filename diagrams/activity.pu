@@ -1,0 +1,11 @@
+@startuml
+start
+:Input Todo Text;
+if (Add Button Clicked?) then (Yes)
+    :Dispatch Add Action;
+else (No)
+    stop
+endif
+:Display Updated Todo List;
+stop
+@enduml
