@@ -1,0 +1,53 @@
+@startuml
+actor User
+participant index.html
+participant index.js
+participant App
+participant useReducer
+participant reducer
+participant TodoForm
+participant TodoList
+participant TodoItem
+
+User -> index.html: Open Application
+index.html -> index.js: Load JavaScript
+index.js -> App: Render <App />
+App -> useReducer: Initialize State
+useReducer -> reducer: Call reducer with initial state
+reducer --> useReducer: Return initial state
+useReducer --> App: Return state and dispatch function
+App -> TodoForm: Render <TodoForm />
+App -> TodoList: Render <TodoList />
+TodoList -> TodoItem: Render each <TodoItem />
+
+User -> TodoForm: Enter Todo
+TodoForm -> TodoForm: handleSubmit()
+TodoForm -> App: onSubmit(text)
+App -> useReducer: dispatch({ type: 'add', payload: text })
+useReducer -> reducer: reducer(state, action)
+reducer -> reducer: Add new todo to state
+reducer --> useReducer: Updated State
+useReducer --> App: Updated State
+App -> TodoList: Re-render <TodoList />
+TodoList -> TodoItem: Re-render each <TodoItem />
+
+User -> TodoItem: Toggle Todo
+TodoItem -> App: dispatch({ type: 'toggle', payload: todo.id })
+App -> useReducer: dispatch({ type: 'toggle', payload: todo.id })
+useReducer -> reducer: reducer(state, action)
+reducer -> reducer: Toggle todo completed state
+reducer --> useReducer: Updated State
+useReducer --> App: Updated State
+App -> TodoList: Re-render <TodoList />
+TodoList -> TodoItem: Re-render each <TodoItem />
+
+User -> TodoItem: Delete Todo
+TodoItem -> App: dispatch({ type: 'delete', payload: todo.id })
+App -> useReducer: dispatch({ type: 'delete', payload: todo.id })
+useReducer -> reducer: reducer(state, action)
+reducer -> reducer: Remove todo from state
+reducer --> useReducer: Updated State
+useReducer --> App: Updated State
+App -> TodoList: Re-render <TodoList />
+TodoList -> TodoItem: Re-render each <TodoItem />
+@enduml

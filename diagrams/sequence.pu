@@ -3,9 +3,18 @@ actor User
 participant TodoForm
 participant App
 participant useReducer
+participant reducer
+participant TodoList
+participant TodoItem
+
 User -> TodoForm: Enter Todo
-TodoForm -> App: Submit Form
-App -> useReducer: Dispatch Add Action
+TodoForm -> TodoForm: handleSubmit()
+TodoForm -> App: onSubmit(text)
+App -> useReducer: dispatch({ type: 'add', payload: text })
+useReducer -> reducer: reducer(state, action)
+reducer -> reducer: Add new todo to state
+reducer --> useReducer: Updated State
 useReducer --> App: Updated State
 App -> TodoList: Render Todos
+TodoList -> TodoItem: Render each TodoItem
 @enduml
