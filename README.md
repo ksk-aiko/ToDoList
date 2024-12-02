@@ -40,12 +40,22 @@
    - コンテナ化されたアプリケーション開発
 
 4. **Reduxを活用した開発**
-
 ```mermaid
-graph TD
-  A[UI] -->|dispatch(action)| B[Store]
-  B -->|run reducer| C[State]
-  C -->|subscribe| A
+graph LR
+  subgraph App
+    A[UI Component] -->|dispatch| B[Dispatch]
+  end
+
+  B -->|Action| C[Store]
+  subgraph Redux Store
+    C -->|run reducer| D[Reducer]
+    D -->|returns new state| E[State]
+  end
+
+  E -->|subscribe| A
+  A -->|useSelector| F[Selector]
+  F -->|extract data| A
+
 ```
 
 ## セットアップ
