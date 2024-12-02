@@ -39,6 +39,15 @@
    - Dockerによる開発環境の統一
    - コンテナ化されたアプリケーション開発
 
+4. **Reduxを活用した開発**
+
+```mermaid
+graph TD
+  A[UI] -->|dispatch(action)| B[Store]
+  B -->|run reducer| C[State]
+  C -->|subscribe| A
+```
+
 ## セットアップ
 ```bash
 # リポジトリのクローン
